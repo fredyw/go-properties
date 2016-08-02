@@ -24,7 +24,6 @@ package goprops
 
 import (
 	"bufio"
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -56,7 +55,7 @@ func Read(in io.Reader) (Properties, error) {
 			key, value := groups[1], groups[2]
 			props[strings.TrimSpace(key)] = strings.TrimSpace(value)
 		} else {
-			return nil, errors.New(fmt.Sprintf("Invalid syntax at line %d", lineNumber))
+			return nil, fmt.Errorf("Invalid syntax at line %d", lineNumber)
 		}
 		lineNumber++
 	}
